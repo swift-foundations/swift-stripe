@@ -11,86 +11,86 @@ import URLRouting
 // MARK: - Routing Errors
 
 public enum StripeRoutingError: Swift.Error {
-  case missingBody
-  case missingWebhookSecret
-  case missingSignatureHeader
-  case invalidSignature(Swift.Error)
-  case parseError(Swift.Error)
-  case unhandledEventType(String)
+    case missingBody
+    case missingWebhookSecret
+    case missingSignatureHeader
+    case invalidSignature(Swift.Error)
+    case parseError(Swift.Error)
+    case unhandledEventType(String)
 }
 
 // MARK: - Event Router
 
 extension Stripe.Events.Event {
-  /// Router for parsing raw Stripe webhook events from request body
-  public struct Router: ParserPrinter, Sendable {
-    public init() {}
+    /// Router for parsing raw Stripe webhook events from request body
+    public struct Router: ParserPrinter, Sendable {
+        public init() {}
 
-    public func parse(_ input: inout URLRequestData) throws -> Stripe.Events.Event {
-      // Get raw body
-      guard let body = input.body else {
-        throw StripeRoutingError.missingBody
-      }
+        public func parse(_ input: inout URLRequestData) throws -> Stripe.Events.Event {
+            // Get raw body
+            guard let body = input.body else {
+                throw StripeRoutingError.missingBody
+            }
 
-      // Get webhook secret
-      @Dependency(\.envVars.stripe.webhookSecret) var webhookSecret
-      guard let webhookSecret else {
-        throw StripeRoutingError.missingWebhookSecret
-      }
+            // Get webhook secret
+            @Dependency(\.envVars.stripe.webhookSecret) var webhookSecret
+            guard let webhookSecret else {
+                throw StripeRoutingError.missingWebhookSecret
+            }
 
-      // Get Stripe signature header
-      // Note: The header may be split into array elements by HTTP parsing
-      guard
-        let signatureArray = input.headers["Stripe-Signature"],
-        !signatureArray.isEmpty
-      else {
-        throw StripeRoutingError.missingSignatureHeader
-      }
+            // Get Stripe signature header
+            // Note: The header may be split into array elements by HTTP parsing
+            guard
+                let signatureArray = input.headers["Stripe-Signature"],
+                !signatureArray.isEmpty
+            else {
+                throw StripeRoutingError.missingSignatureHeader
+            }
 
-      // Join all parts if split by comma parsing
-      let signature = signatureArray.compactMap { $0 }.joined(separator: ",")
+            // Join all parts if split by comma parsing
+            let signature = signatureArray.compactMap { $0 }.joined(separator: ",")
 
-      // Verify webhook signature
-      do {
-        try StripeWebhookSignature.verify(
-          payload: body,
-          header: signature,
-          secret: webhookSecret,
-          tolerance: 300
-        )
-      } catch {
-        throw StripeRoutingError.invalidSignature(error)
-      }
+            // Verify webhook signature
+            do {
+                try StripeWebhookSignature.verify(
+                    payload: body,
+                    header: signature,
+                    secret: webhookSecret,
+                    tolerance: 300
+                )
+            } catch {
+                throw StripeRoutingError.invalidSignature(error)
+            }
 
-      // Parse the event
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      decoder.dateDecodingStrategy = .secondsSince1970
+            // Parse the event
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .secondsSince1970
 
-      let event: Stripe.Events.Event
-      do {
-        event = try decoder.decode(Stripe.Events.Event.self, from: body)
-      } catch {
-        throw StripeRoutingError.parseError(error)
-      }
+            let event: Stripe.Events.Event
+            do {
+                event = try decoder.decode(Stripe.Events.Event.self, from: body)
+            } catch {
+                throw StripeRoutingError.parseError(error)
+            }
 
-      // Event received (logging handled by webhook processor)
+            // Event received (logging handled by webhook processor)
 
-      // Note: We don't consume the body from input as other middleware might need it
+            // Note: We don't consume the body from input as other middleware might need it
 
-      return event
+            return event
+        }
+
+        public func print(_ output: Stripe.Events.Event, into input: inout URLRequestData) throws {
+            // Encode the event back to JSON
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            encoder.dateEncodingStrategy = .secondsSince1970
+
+            let data = try encoder.encode(output)
+            input.body = data
+        }
     }
-
-    public func print(_ output: Stripe.Events.Event, into input: inout URLRequestData) throws {
-      // Encode the event back to JSON
-      let encoder = JSONEncoder()
-      encoder.keyEncodingStrategy = .convertToSnakeCase
-      encoder.dateEncodingStrategy = .secondsSince1970
-
-      let data = try encoder.encode(output)
-      input.body = data
-    }
-  }
 }
 
 // MARK: - Event.Typed Router

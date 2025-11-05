@@ -1,0 +1,45 @@
+version: 1
+builder:
+  configs:
+  - documentation_targets:
+    - Stripe
+    - Stripe Balance
+    - Stripe Balance Transactions
+    - Stripe Billing
+    - Stripe Capital
+    - Stripe Charges
+    - Stripe Checkout
+    - Stripe Climate
+    - Stripe Connect
+    - Stripe Confirmation Token
+    - Stripe Crypto
+    - Stripe Customer Session
+    - Stripe Customers
+    - Stripe Disputes
+    - Stripe Entitlements
+    - Stripe Event Destinations
+    - Stripe Events
+    - Stripe File Links
+    - Stripe Files
+    - Stripe Financial Connections
+    - Stripe Forwarding
+    - Stripe Fraud
+    - Stripe Identity
+    - Stripe Issuing
+    - Stripe Mandates
+    - Stripe Payment Intents
+    - Stripe Payment Link
+    - Stripe Payment Methods
+    - Stripe Payouts
+    - Stripe Products
+    - Stripe Refunds
+    - Stripe Reporting
+    - Stripe Setup Attempts
+    - Stripe Setup Intents
+    - Stripe Sigma
+    - Stripe Tax
+    - Stripe Terminal
+    - Stripe Tokens
+    - Stripe Treasury
+    - Stripe Web Elements
+    - Stripe Webhooks
