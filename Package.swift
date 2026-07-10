@@ -202,12 +202,12 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-authenticating.git", from: "0.0.1"),
-        .package(url: "https://github.com/swift-foundations/swift-server-foundation.git", from: "0.0.1"),
-        .package(url: "https://github.com/swift-standards/swift-stripe-types.git", from: "0.0.1"),
-        .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", from: "0.0.1"),
+        .package(url: "https://github.com/swift-foundations/swift-server-foundation.git", branch: "main"),
+        .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main"),
+        .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
-        .package(url: "https://github.com/swift-foundations/swift-html.git", from: "0.0.1")
+        .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main")
     ],
     targets: [
         .target(
