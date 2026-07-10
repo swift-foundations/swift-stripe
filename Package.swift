@@ -146,7 +146,7 @@ extension Target.Dependency {
     static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
     static var authenticating: Self { .product(name: "Authenticating", package: "swift-authenticating") }
     static var dependenciesMacros: Self { .product(name: "DependenciesMacros", package: "swift-dependencies") }
-    static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
+    static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
 }
@@ -205,7 +205,7 @@ let package = Package(
         .package(url: "https://github.com/swift-foundations/swift-server-foundation.git", from: "0.0.1"),
         .package(url: "https://github.com/swift-standards/swift-stripe-types.git", from: "0.0.1"),
         .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", from: "0.0.1"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.9.2"),
+        .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
         .package(url: "https://github.com/swift-foundations/swift-html.git", from: "0.0.1")
     ],
