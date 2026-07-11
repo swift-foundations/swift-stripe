@@ -146,7 +146,6 @@ extension Target.Dependency {
     static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
     static var authenticating: Self { .product(name: "Authenticating", package: "swift-authenticating") }
     static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
-    static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
 }
 
@@ -205,7 +204,6 @@ let package = Package(
         .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
-        .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
         .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main")
     ],
     targets: [
@@ -224,7 +222,6 @@ let package = Package(
                 .stripeLive,
                 .stripeShared,
                 .serverFoundation,
-                .tagged,
                 .stripeBalance,
                 .stripeBalanceTransactions,
                 .stripeCharges,
@@ -286,8 +283,7 @@ let package = Package(
             dependencies: [
                 .stripeBalanceLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -302,8 +298,7 @@ let package = Package(
             dependencies: [
                 .stripeBalanceTransactionsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -318,8 +313,7 @@ let package = Package(
             dependencies: [
                 .stripeChargesLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -334,8 +328,7 @@ let package = Package(
             dependencies: [
                 .stripeCustomersLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -350,8 +343,7 @@ let package = Package(
             dependencies: [
                 .stripeCustomerSessionLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -366,8 +358,7 @@ let package = Package(
             dependencies: [
                 .stripeDisputesLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -382,8 +373,7 @@ let package = Package(
             dependencies: [
                 .stripeEventsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -398,8 +388,7 @@ let package = Package(
             dependencies: [
                 .stripeEventDestinationsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -414,8 +403,7 @@ let package = Package(
             dependencies: [
                 .stripeFilesLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -430,8 +418,7 @@ let package = Package(
             dependencies: [
                 .stripeFileLinksLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -446,8 +433,7 @@ let package = Package(
             dependencies: [
                 .stripeMandatesLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -462,8 +448,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentIntentsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -478,8 +463,7 @@ let package = Package(
             dependencies: [
                 .stripeSetupIntentsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -494,8 +478,7 @@ let package = Package(
             dependencies: [
                 .stripeSetupAttemptsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -510,8 +493,7 @@ let package = Package(
             dependencies: [
                 .stripePayoutsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -526,8 +508,7 @@ let package = Package(
             dependencies: [
                 .stripeRefundsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -542,8 +523,7 @@ let package = Package(
             dependencies: [
                 .stripeConfirmationTokenLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -558,8 +538,7 @@ let package = Package(
             dependencies: [
                 .stripeTokensLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -574,8 +553,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentMethodsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -590,8 +568,7 @@ let package = Package(
             dependencies: [
                 .stripeProductsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -606,8 +583,7 @@ let package = Package(
             dependencies: [
                 .stripeCheckoutLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -622,8 +598,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentLinkLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -638,8 +613,7 @@ let package = Package(
             dependencies: [
                 .stripeBillingLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -654,8 +628,7 @@ let package = Package(
             dependencies: [
                 .stripeCapitalLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -670,8 +643,7 @@ let package = Package(
             dependencies: [
                 .stripeConnectLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -686,8 +658,7 @@ let package = Package(
             dependencies: [
                 .stripeFraudLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -702,8 +673,7 @@ let package = Package(
             dependencies: [
                 .stripeIssuingLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -718,8 +688,7 @@ let package = Package(
             dependencies: [
                 .stripeTerminalLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -734,8 +703,7 @@ let package = Package(
             dependencies: [
                 .stripeTreasuryLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -750,8 +718,7 @@ let package = Package(
             dependencies: [
                 .stripeEntitlementsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -766,8 +733,7 @@ let package = Package(
             dependencies: [
                 .stripeSigmaLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -782,8 +748,7 @@ let package = Package(
             dependencies: [
                 .stripeReportingLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -798,8 +763,7 @@ let package = Package(
             dependencies: [
                 .stripeFinancialConnectionsLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -814,8 +778,7 @@ let package = Package(
             dependencies: [
                 .stripeTaxLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -830,8 +793,7 @@ let package = Package(
             dependencies: [
                 .stripeIdentityLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -846,8 +808,7 @@ let package = Package(
             dependencies: [
                 .stripeCryptoLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -862,8 +823,7 @@ let package = Package(
             dependencies: [
                 .stripeClimateLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -878,8 +838,7 @@ let package = Package(
             dependencies: [
                 .stripeForwardingLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -894,8 +853,7 @@ let package = Package(
             dependencies: [
                 .stripeWebhooksLive,
                 .stripeShared,
-                .serverFoundation,
-                .tagged
+                .serverFoundation
             ]
         ),
         .testTarget(
@@ -911,7 +869,6 @@ let package = Package(
                 .stripeWebElementsTypes,
                 .stripeShared,
                 .serverFoundation,
-                .tagged,
                 .html
             ]
         ),
