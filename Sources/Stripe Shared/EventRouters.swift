@@ -22,11 +22,28 @@ public enum StripeRoutingError: Swift.Error {
 // MARK: - Event Router
 
 extension Stripe.Events.Event {
-    /// Router for parsing raw Stripe webhook events from request body
-    public struct Router: ParserPrinter, Sendable {
+    /// Router for parsing raw Stripe webhook events from request body.
+    ///
+    /// Institute-idiom respell (run-arc 2026-07-13): manual parse/print with
+    /// function-level typed throws and `Body = Never`, per the vended
+    /// `RFC_6750.Bearer.Router` shape (swift-url-routing/Authenticating) and
+    /// stripe-live's StripeAuthRouter unification (90cce3a). Conforms to
+    /// `Parser.Bidirectional` directly — NOT `ParserPrinter` — because
+    /// `ParserPrinter` pins `Failure == RFC_3986.URI.Routing.Error`, whose
+    /// initializer is internal to URLRouting (`@usableFromInline`), so this
+    /// module cannot construct it for its domain failures (missing body /
+    /// missing secret / signature verification). The honest vended-idiom
+    /// failure type is the domain error `StripeRoutingError`. (Bearer.Router
+    /// itself is declared `Parser.Bidirectional` for the same reason of shape.)
+    public struct Router: Parser.Bidirectional, Sendable {
+        public typealias Input = URLRequestData
+        public typealias Output = Stripe.Events.Event
+        public typealias Failure = StripeRoutingError
+        public typealias Body = Never
+
         public init() {}
 
-        public func parse(_ input: inout URLRequestData) throws -> Stripe.Events.Event {
+        public func parse(_ input: inout URLRequestData) throws(StripeRoutingError) -> Stripe.Events.Event {
             // Get raw body
             guard let body = input.body else {
                 throw StripeRoutingError.missingBody
@@ -81,14 +98,17 @@ extension Stripe.Events.Event {
             return event
         }
 
-        public func print(_ output: Stripe.Events.Event, into input: inout URLRequestData) throws {
+        public func print(_ output: Stripe.Events.Event, into input: inout URLRequestData) throws(StripeRoutingError) {
             // Encode the event back to JSON
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             encoder.dateEncodingStrategy = .secondsSince1970
 
-            let data = try encoder.encode(output)
-            input.body = data
+            do {
+                input.body = try encoder.encode(output)
+            } catch {
+                throw StripeRoutingError.parseError(error)
+            }
         }
     }
 }
