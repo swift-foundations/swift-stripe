@@ -7,7 +7,7 @@
 
 import Dependencies
 import DependenciesTestSupport
-import EnvironmentVariables
+import ServerFoundationEnvVars
 import Foundation
 import IssueReporting
 import Stripe_Customers

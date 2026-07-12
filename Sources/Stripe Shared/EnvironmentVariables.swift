@@ -5,8 +5,10 @@
 //  Created by Coen ten Thije Boonkkamp on 13/08/2025.
 //
 
-import EnvironmentVariables
+import Dependencies
 import Foundation
+import ServerFoundation
+import ServerFoundationEnvVars
 
 extension EnvVars {
     package static var development: Self {
@@ -15,8 +17,7 @@ extension EnvVars {
         // This allows tests to run in CI without requiring a .env file
         do {
             return try .live(
-                environmentConfiguration: .projectRoot(projectRoot, environment: "development"),
-                requiredKeys: []
+                environmentConfiguration: .projectRoot(projectRoot, environment: "development")
             )
         } catch {
             // In CI or environments without .env files, return empty environment variables
