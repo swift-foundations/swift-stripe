@@ -425,13 +425,13 @@ extension Stripe.Events.Event {
         }
 
         public indirect enum SourceEvent: Codable, Hashable, Sendable {
-            case canceled(Source)
-            case chargeable(Source)
-            case failed(Source)
-            case mandateNotification(Source)
-            case refundAttributesRequired(Source)
-            case transactionCreated(Source)
-            case transactionUpdated(Source)
+            case canceled(Stripe_Types_Models.Source)
+            case chargeable(Stripe_Types_Models.Source)
+            case failed(Stripe_Types_Models.Source)
+            case mandateNotification(Stripe_Types_Models.Source)
+            case refundAttributesRequired(Stripe_Types_Models.Source)
+            case transactionCreated(Stripe_Types_Models.Source)
+            case transactionUpdated(Stripe_Types_Models.Source)
         }
 
         public indirect enum SubscriptionScheduleEvent: Codable, Hashable, Sendable {
@@ -494,677 +494,677 @@ extension Stripe.Events.Event.Typed {
         switch type {
         // Payment Intent events
         case .paymentIntentSucceeded:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.succeeded(paymentIntent))
                 return
             }
 
         case .paymentIntentPaymentFailed:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.paymentFailed(paymentIntent))
                 return
             }
 
         case .paymentIntentCreated:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.created(paymentIntent))
                 return
             }
 
         case .paymentIntentCanceled:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.canceled(paymentIntent))
                 return
             }
 
         case .paymentIntentProcessing:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.processing(paymentIntent))
                 return
             }
 
         case .paymentIntentRequiresAction:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.requiresAction(paymentIntent))
                 return
             }
 
         case .paymentIntentAmountCapturableUpdated:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.amountCapturableUpdated(paymentIntent))
                 return
             }
 
         case .paymentIntentPartiallyFunded:
-            if let paymentIntent = data.paymentIntent {
+            if let paymentIntent = Stripe.Events.Event.Object.cases.paymentIntent.extract(data) {
                 self = .paymentIntent(.partiallyFunded(paymentIntent))
                 return
             }
 
         // Charge events
         case .chargeSucceeded:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.succeeded(charge))
                 return
             }
 
         case .chargeFailed:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.failed(charge))
                 return
             }
 
         case .chargeCaptured:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.captured(charge))
                 return
             }
 
         case .chargeRefunded:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.refunded(charge))
                 return
             }
 
         case .chargeUpdated:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.updated(charge))
                 return
             }
 
         case .chargePending:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.pending(charge))
                 return
             }
 
         case .chargeExpired:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.expired(charge))
                 return
             }
 
         case .chargeDisputeCreated:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.disputeCreated(charge))
                 return
             }
 
         case .chargeDisputeClosed:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.disputeClosed(charge))
                 return
             }
 
         case .chargeDisputeFundsReinstated:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.disputeFundsReinstated(charge))
                 return
             }
 
         case .chargeDisputeFundsWithdrawn:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.disputeFundsWithdrawn(charge))
                 return
             }
 
         case .chargeDisputeUpdated:
-            if let charge = data.charge {
+            if let charge = Stripe.Events.Event.Object.cases.charge.extract(data) {
                 self = .charge(.disputeUpdated(charge))
                 return
             }
 
         // Customer events
         case .customerCreated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.created(customer))
                 return
             }
 
         case .customerUpdated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.updated(customer))
                 return
             }
 
         case .customerDeleted:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.deleted(customer))
                 return
             }
 
         case .customerDiscountCreated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.discountCreated(customer))
                 return
             }
 
         case .customerDiscountDeleted:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.discountDeleted(customer))
                 return
             }
 
         case .customerDiscountUpdated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.discountUpdated(customer))
                 return
             }
 
         case .customerSourceCreated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.sourceCreated(customer))
                 return
             }
 
         case .customerSourceDeleted:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.sourceDeleted(customer))
                 return
             }
 
         case .customerSourceExpiring:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.sourceExpiring(customer))
                 return
             }
 
         case .customerSourceUpdated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.sourceUpdated(customer))
                 return
             }
 
         case .customerSubscriptionCreated:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionCreated(subscription))
                 return
             }
 
         case .customerSubscriptionDeleted:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionDeleted(subscription))
                 return
             }
 
         case .customerSubscriptionPaused:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionPaused(subscription))
                 return
             }
 
         case .customerSubscriptionPendingUpdateApplied:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionPendingUpdateApplied(subscription))
                 return
             }
 
         case .customerSubscriptionPendingUpdateExpired:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionPendingUpdateExpired(subscription))
                 return
             }
 
         case .customerSubscriptionResumed:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionResumed(subscription))
                 return
             }
 
         case .customerSubscriptionTrialWillEnd:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionTrialWillEnd(subscription))
                 return
             }
 
         case .customerSubscriptionUpdated:
-            if let subscription = data.subscription {
+            if let subscription = Stripe.Events.Event.Object.cases.subscription.extract(data) {
                 self = .customer(.subscriptionUpdated(subscription))
                 return
             }
 
         case .customerTaxIdCreated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.taxIdCreated(customer))
                 return
             }
 
         case .customerTaxIdDeleted:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.taxIdDeleted(customer))
                 return
             }
 
         case .customerTaxIdUpdated:
-            if let customer = data.customer {
+            if let customer = Stripe.Events.Event.Object.cases.customer.extract(data) {
                 self = .customer(.taxIdUpdated(customer))
                 return
             }
 
         // Invoice events
         case .invoiceCreated:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.created(invoice))
                 return
             }
 
         case .invoiceDeleted:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.deleted(invoice))
                 return
             }
 
         case .invoiceFinalizationFailed:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.finalizationFailed(invoice))
                 return
             }
 
         case .invoiceFinalized:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.finalized(invoice))
                 return
             }
 
         case .invoiceMarkedUncollectible:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.markedUncollectible(invoice))
                 return
             }
 
         case .invoiceOverdue:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.overdue(invoice))
                 return
             }
 
         case .invoicePaid:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.paid(invoice))
                 return
             }
 
         case .invoicePaymentActionRequired:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.paymentActionRequired(invoice))
                 return
             }
 
         case .invoicePaymentFailed:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.paymentFailed(invoice))
                 return
             }
 
         case .invoicePaymentSucceeded:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.paymentSucceeded(invoice))
                 return
             }
 
         case .invoicePaymentPaid:
             // Legacy event type - treat as payment succeeded
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.paymentSucceeded(invoice))
                 return
             }
 
         case .invoiceSent:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.sent(invoice))
                 return
             }
 
         case .invoiceUpcoming:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.upcoming(invoice))
                 return
             }
 
         case .invoiceUpdated:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.updated(invoice))
                 return
             }
 
         case .invoiceVoided:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.voidInvoice(invoice))
                 return
             }
 
         case .invoiceWillBeDue:
-            if let invoice = data.invoice {
+            if let invoice = Stripe.Events.Event.Object.cases.invoice.extract(data) {
                 self = .invoice(.willBeDue(invoice))
                 return
             }
 
         // Checkout Session events
         case .checkoutSessionAsyncPaymentFailed:
-            if let checkoutSession = data.checkoutSession {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
                 self = .checkoutSession(.asyncPaymentFailed(checkoutSession))
                 return
             }
 
         case .checkoutSessionAsyncPaymentSucceeded:
-            if let checkoutSession = data.checkoutSession {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
                 self = .checkoutSession(.asyncPaymentSucceeded(checkoutSession))
                 return
             }
 
         case .checkoutSessionCompleted:
-            if let checkoutSession = data.checkoutSession {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
                 self = .checkoutSession(.completed(checkoutSession))
                 return
             }
 
         case .checkoutSessionExpired:
-            if let checkoutSession = data.checkoutSession {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
                 self = .checkoutSession(.expired(checkoutSession))
                 return
             }
 
         // Setup Intent events
         case .setupIntentCanceled:
-            if let setupIntent = data.setupIntent {
+            if let setupIntent = Stripe.Events.Event.Object.cases.setupIntent.extract(data) {
                 self = .setupIntent(.canceled(setupIntent))
                 return
             }
 
         case .setupIntentCreated:
-            if let setupIntent = data.setupIntent {
+            if let setupIntent = Stripe.Events.Event.Object.cases.setupIntent.extract(data) {
                 self = .setupIntent(.created(setupIntent))
                 return
             }
 
         case .setupIntentRequiresAction:
-            if let setupIntent = data.setupIntent {
+            if let setupIntent = Stripe.Events.Event.Object.cases.setupIntent.extract(data) {
                 self = .setupIntent(.requiresAction(setupIntent))
                 return
             }
 
         case .setupIntentSetupFailed:
-            if let setupIntent = data.setupIntent {
+            if let setupIntent = Stripe.Events.Event.Object.cases.setupIntent.extract(data) {
                 self = .setupIntent(.setupFailed(setupIntent))
                 return
             }
 
         case .setupIntentSucceeded:
-            if let setupIntent = data.setupIntent {
+            if let setupIntent = Stripe.Events.Event.Object.cases.setupIntent.extract(data) {
                 self = .setupIntent(.succeeded(setupIntent))
                 return
             }
 
         // Payment Method events
         case .paymentMethodAttached:
-            if let paymentMethod = data.paymentMethod {
+            if let paymentMethod = Stripe.Events.Event.Object.cases.paymentMethod.extract(data) {
                 self = .paymentMethod(.attached(paymentMethod))
                 return
             }
 
         case .paymentMethodAutomaticallyUpdated:
-            if let paymentMethod = data.paymentMethod {
+            if let paymentMethod = Stripe.Events.Event.Object.cases.paymentMethod.extract(data) {
                 self = .paymentMethod(.automaticallyUpdated(paymentMethod))
                 return
             }
 
         case .paymentMethodDetached:
-            if let paymentMethod = data.paymentMethod {
+            if let paymentMethod = Stripe.Events.Event.Object.cases.paymentMethod.extract(data) {
                 self = .paymentMethod(.detached(paymentMethod))
                 return
             }
 
         case .paymentMethodUpdated:
-            if let paymentMethod = data.paymentMethod {
+            if let paymentMethod = Stripe.Events.Event.Object.cases.paymentMethod.extract(data) {
                 self = .paymentMethod(.updated(paymentMethod))
                 return
             }
 
         // Product events
         case .productCreated:
-            if let product = data.product {
+            if let product = Stripe.Events.Event.Object.cases.product.extract(data) {
                 self = .product(.created(product))
                 return
             }
 
         case .productDeleted:
-            if let product = data.product {
+            if let product = Stripe.Events.Event.Object.cases.product.extract(data) {
                 self = .product(.deleted(product))
                 return
             }
 
         case .productUpdated:
-            if let product = data.product {
+            if let product = Stripe.Events.Event.Object.cases.product.extract(data) {
                 self = .product(.updated(product))
                 return
             }
 
         // Price events
         case .priceCreated:
-            if let price = data.price {
+            if let price = Stripe.Events.Event.Object.cases.price.extract(data) {
                 self = .price(.created(price))
                 return
             }
 
         case .priceDeleted:
-            if let price = data.price {
+            if let price = Stripe.Events.Event.Object.cases.price.extract(data) {
                 self = .price(.deleted(price))
                 return
             }
 
         case .priceUpdated:
-            if let price = data.price {
+            if let price = Stripe.Events.Event.Object.cases.price.extract(data) {
                 self = .price(.updated(price))
                 return
             }
 
         // Payout events
         case .payoutCanceled:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.canceled(payout))
                 return
             }
 
         case .payoutCreated:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.created(payout))
                 return
             }
 
         case .payoutFailed:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.failed(payout))
                 return
             }
 
         case .payoutPaid:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.paid(payout))
                 return
             }
 
         case .payoutReconciliationCompleted:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.reconciliationCompleted(payout))
                 return
             }
 
         case .payoutUpdated:
-            if let payout = data.payout {
+            if let payout = Stripe.Events.Event.Object.cases.payout.extract(data) {
                 self = .payout(.updated(payout))
                 return
             }
 
         // Refund events
         case .refundCreated:
-            if let refund = data.refund {
+            if let refund = Stripe.Events.Event.Object.cases.refund.extract(data) {
                 self = .refund(.created(refund))
                 return
             }
 
         case .refundUpdated:
-            if let refund = data.refund {
+            if let refund = Stripe.Events.Event.Object.cases.refund.extract(data) {
                 self = .refund(.updated(refund))
                 return
             }
 
         // Payment Link events
         case .paymentLinkCreated:
-            if let paymentLink = data.paymentLink {
+            if let paymentLink = Stripe.Events.Event.Object.cases.paymentLink.extract(data) {
                 self = .paymentLink(.created(paymentLink))
                 return
             }
 
         case .paymentLinkUpdated:
-            if let paymentLink = data.paymentLink {
+            if let paymentLink = Stripe.Events.Event.Object.cases.paymentLink.extract(data) {
                 self = .paymentLink(.updated(paymentLink))
                 return
             }
 
         // Mandate events
         case .mandateUpdated:
-            if let mandate = data.mandate {
+            if let mandate = Stripe.Events.Event.Object.cases.mandate.extract(data) {
                 self = .mandate(.updated(mandate))
                 return
             }
 
         // Account events
         case .accountApplicationAuthorized:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.applicationAuthorized(account))
                 return
             }
 
         case .accountApplicationDeauthorized:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.applicationDeauthorized(account))
                 return
             }
 
         case .accountExternalAccountCreated:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.externalAccountCreated(account))
                 return
             }
 
         case .accountExternalAccountDeleted:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.externalAccountDeleted(account))
                 return
             }
 
         case .accountExternalAccountUpdated:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.externalAccountUpdated(account))
                 return
             }
 
         case .accountUpdated:
-            if let account = data.account {
+            if let account = Stripe.Events.Event.Object.cases.account.extract(data) {
                 self = .account(.updated(account))
                 return
             }
 
         // Application Fee events
         case .applicationFeeCreated:
-            if let applicationFee = data.applicationFee {
+            if let applicationFee = Stripe.Events.Event.Object.cases.applicationFee.extract(data) {
                 self = .applicationFee(.created(applicationFee))
                 return
             }
 
         case .applicationFeeRefunded:
-            if let applicationFee = data.applicationFee {
+            if let applicationFee = Stripe.Events.Event.Object.cases.applicationFee.extract(data) {
                 self = .applicationFee(.refunded(applicationFee))
                 return
             }
 
         case .applicationFeeRefundUpdated:
-            if let applicationFeeRefund = data.applicationFeeRefund {
+            if let applicationFeeRefund = Stripe.Events.Event.Object.cases.applicationFeeRefund.extract(data) {
                 self = .applicationFee(.refundUpdated(applicationFeeRefund))
                 return
             }
 
         // Balance events
         case .balanceAvailable:
-            if let balance = data.balance {
+            if let balance = Stripe.Events.Event.Object.cases.balance.extract(data) {
                 self = .balance(.available(balance))
                 return
             }
 
         // Billing Portal events
         case .billingPortalConfigurationCreated:
-            if let configuration = data.configuration {
+            if let configuration = Stripe.Events.Event.Object.cases.configuration.extract(data) {
                 self = .billingPortal(.configurationCreated(configuration))
                 return
             }
 
         case .billingPortalConfigurationUpdated:
-            if let configuration = data.configuration {
+            if let configuration = Stripe.Events.Event.Object.cases.configuration.extract(data) {
                 self = .billingPortal(.configurationUpdated(configuration))
                 return
             }
 
         case .billingPortalSessionCreated:
-            if let billingPortalSession = data.billingPortalSession {
+            if let billingPortalSession = Stripe.Events.Event.Object.cases.billingPortalSession.extract(data) {
                 self = .billingPortal(.sessionCreated(billingPortalSession))
                 return
             }
 
         // Capability events
         case .capabilityUpdated:
-            if let capability = data.capability {
+            if let capability = Stripe.Events.Event.Object.cases.capability.extract(data) {
                 self = .capability(.updated(capability))
                 return
             }
 
         // Cash Balance events
         case .cashBalanceFundsAvailable:
-            if let cashBalance = data.cashBalance {
+            if let cashBalance = Stripe.Events.Event.Object.cases.cashBalance.extract(data) {
                 self = .cashBalance(.fundsAvailable(cashBalance))
                 return
             }
 
         // Coupon events
         case .couponCreated:
-            if let coupon = data.coupon {
+            if let coupon = Stripe.Events.Event.Object.cases.coupon.extract(data) {
                 self = .coupon(.created(coupon))
                 return
             }
 
         case .couponDeleted:
-            if let coupon = data.coupon {
+            if let coupon = Stripe.Events.Event.Object.cases.coupon.extract(data) {
                 self = .coupon(.deleted(coupon))
                 return
             }
 
         case .couponUpdated:
-            if let coupon = data.coupon {
+            if let coupon = Stripe.Events.Event.Object.cases.coupon.extract(data) {
                 self = .coupon(.updated(coupon))
                 return
             }
 
         // Credit Note events
         case .creditNoteCreated:
-            if let creditNote = data.creditNote {
+            if let creditNote = Stripe.Events.Event.Object.cases.creditNote.extract(data) {
                 self = .creditNote(.created(creditNote))
                 return
             }
 
         case .creditNoteUpdated:
-            if let creditNote = data.creditNote {
+            if let creditNote = Stripe.Events.Event.Object.cases.creditNote.extract(data) {
                 self = .creditNote(.updated(creditNote))
                 return
             }
 
         case .creditNoteVoided:
-            if let creditNote = data.creditNote {
+            if let creditNote = Stripe.Events.Event.Object.cases.creditNote.extract(data) {
                 self = .creditNote(.voided(creditNote))
                 return
             }
 
         // File events
         case .fileCreated:
-            if let file = data.file {
+            if let file = Stripe.Events.Event.Object.cases.file.extract(data) {
                 self = .file(.created(file))
                 return
             }
@@ -1179,263 +1179,263 @@ extension Stripe.Events.Event.Typed {
 
         // Identity Verification events
         case .identityVerificationSessionCanceled:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionCanceled(verificationSession))
                 return
             }
 
         case .identityVerificationSessionCreated:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionCreated(verificationSession))
                 return
             }
 
         case .identityVerificationSessionProcessing:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionProcessing(verificationSession))
                 return
             }
 
         case .identityVerificationSessionRedacted:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionRedacted(verificationSession))
                 return
             }
 
         case .identityVerificationSessionRequiresInput:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionRequiresInput(verificationSession))
                 return
             }
 
         case .identityVerificationSessionVerified:
-            if let verificationSession = data.verificationSession {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
                 self = .identity(.verificationSessionVerified(verificationSession))
                 return
             }
 
         // Invoice Item events
         case .invoiceitemCreated:
-            if let invoiceItem = data.invoiceItem {
+            if let invoiceItem = Stripe.Events.Event.Object.cases.invoiceItem.extract(data) {
                 self = .invoiceItem(.created(invoiceItem))
                 return
             }
 
         case .invoiceitemDeleted:
-            if let invoiceItem = data.invoiceItem {
+            if let invoiceItem = Stripe.Events.Event.Object.cases.invoiceItem.extract(data) {
                 self = .invoiceItem(.deleted(invoiceItem))
                 return
             }
 
         // Issuing events
         case .issuingAuthorizationCreated:
-            if let issuingAuthorization = data.issuingAuthorization {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
                 self = .issuing(.authorizationCreated(issuingAuthorization))
                 return
             }
 
         case .issuingAuthorizationRequest:
-            if let issuingAuthorization = data.issuingAuthorization {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
                 self = .issuing(.authorizationRequest(issuingAuthorization))
                 return
             }
 
         case .issuingAuthorizationUpdated:
-            if let issuingAuthorization = data.issuingAuthorization {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
                 self = .issuing(.authorizationUpdated(issuingAuthorization))
                 return
             }
 
         case .issuingCardCreated:
-            if let issuingCard = data.issuingCard {
+            if let issuingCard = Stripe.Events.Event.Object.cases.issuingCard.extract(data) {
                 self = .issuing(.cardCreated(issuingCard))
                 return
             }
 
         case .issuingCardUpdated:
-            if let issuingCard = data.issuingCard {
+            if let issuingCard = Stripe.Events.Event.Object.cases.issuingCard.extract(data) {
                 self = .issuing(.cardUpdated(issuingCard))
                 return
             }
 
         case .issuingCardholderCreated:
-            if let issuingCardHolder = data.issuingCardHolder {
+            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(data) {
                 self = .issuing(.cardholderCreated(issuingCardHolder))
                 return
             }
 
         case .issuingCardholderUpdated:
-            if let issuingCardHolder = data.issuingCardHolder {
+            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(data) {
                 self = .issuing(.cardholderUpdated(issuingCardHolder))
                 return
             }
 
         case .issuingDisputeClosed:
-            if let issuingDispute = data.issuingDispute {
+            if let issuingDispute = Stripe.Events.Event.Object.cases.issuingDispute.extract(data) {
                 self = .issuing(.disputeClosed(issuingDispute))
                 return
             }
 
         case .issuingDisputeCreated:
-            if let issuingDispute = data.issuingDispute {
+            if let issuingDispute = Stripe.Events.Event.Object.cases.issuingDispute.extract(data) {
                 self = .issuing(.disputeCreated(issuingDispute))
                 return
             }
 
         case .issuingDisputeFundsReinstated:
-            if let issuingDispute = data.issuingDispute {
+            if let issuingDispute = Stripe.Events.Event.Object.cases.issuingDispute.extract(data) {
                 self = .issuing(.disputeFundsReinstated(issuingDispute))
                 return
             }
 
         case .issuingDisputeSubmitted:
-            if let issuingDispute = data.issuingDispute {
+            if let issuingDispute = Stripe.Events.Event.Object.cases.issuingDispute.extract(data) {
                 self = .issuing(.disputeSubmitted(issuingDispute))
                 return
             }
 
         case .issuingDisputeUpdated:
-            if let issuingDispute = data.issuingDispute {
+            if let issuingDispute = Stripe.Events.Event.Object.cases.issuingDispute.extract(data) {
                 self = .issuing(.disputeUpdated(issuingDispute))
                 return
             }
 
         case .issuingTransactionCreated:
-            if let issuingTransaction = data.issuingTransaction {
+            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(data) {
                 self = .issuing(.transactionCreated(issuingTransaction))
                 return
             }
 
         case .issuingTransactionUpdated:
-            if let issuingTransaction = data.issuingTransaction {
+            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(data) {
                 self = .issuing(.transactionUpdated(issuingTransaction))
                 return
             }
 
         // Person events
         case .personCreated:
-            if let person = data.person {
+            if let person = Stripe.Events.Event.Object.cases.person.extract(data) {
                 self = .person(.created(person))
                 return
             }
 
         case .personDeleted:
-            if let person = data.person {
+            if let person = Stripe.Events.Event.Object.cases.person.extract(data) {
                 self = .person(.deleted(person))
                 return
             }
 
         case .personUpdated:
-            if let person = data.person {
+            if let person = Stripe.Events.Event.Object.cases.person.extract(data) {
                 self = .person(.updated(person))
                 return
             }
 
         // Plan events
         case .planCreated:
-            if let plan = data.plan {
+            if let plan = Stripe.Events.Event.Object.cases.plan.extract(data) {
                 self = .plan(.created(plan))
                 return
             }
 
         case .planDeleted:
-            if let plan = data.plan {
+            if let plan = Stripe.Events.Event.Object.cases.plan.extract(data) {
                 self = .plan(.deleted(plan))
                 return
             }
 
         case .planUpdated:
-            if let plan = data.plan {
+            if let plan = Stripe.Events.Event.Object.cases.plan.extract(data) {
                 self = .plan(.updated(plan))
                 return
             }
 
         // Promotion Code events
         case .promotionCodeCreated:
-            if let promotionCode = data.promotionCode {
+            if let promotionCode = Stripe.Events.Event.Object.cases.promotionCode.extract(data) {
                 self = .promotionCode(.created(promotionCode))
                 return
             }
 
         case .promotionCodeUpdated:
-            if let promotionCode = data.promotionCode {
+            if let promotionCode = Stripe.Events.Event.Object.cases.promotionCode.extract(data) {
                 self = .promotionCode(.updated(promotionCode))
                 return
             }
 
         // Quote events
         case .quoteAccepted:
-            if let quote = data.quote {
+            if let quote = Stripe.Events.Event.Object.cases.quote.extract(data) {
                 self = .quote(.accepted(quote))
                 return
             }
 
         case .quoteCanceled:
-            if let quote = data.quote {
+            if let quote = Stripe.Events.Event.Object.cases.quote.extract(data) {
                 self = .quote(.canceled(quote))
                 return
             }
 
         case .quoteCreated:
-            if let quote = data.quote {
+            if let quote = Stripe.Events.Event.Object.cases.quote.extract(data) {
                 self = .quote(.created(quote))
                 return
             }
 
         case .quoteFinalized:
-            if let quote = data.quote {
+            if let quote = Stripe.Events.Event.Object.cases.quote.extract(data) {
                 self = .quote(.finalized(quote))
                 return
             }
 
         // Radar events
         case .radarEarlyFraudWarningCreated:
-            if let earlyFraudWarning = data.earlyFraudWarning {
+            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(data) {
                 self = .radar(.earlyFraudWarningCreated(earlyFraudWarning))
                 return
             }
 
         case .radarEarlyFraudWarningUpdated:
-            if let earlyFraudWarning = data.earlyFraudWarning {
+            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(data) {
                 self = .radar(.earlyFraudWarningUpdated(earlyFraudWarning))
                 return
             }
 
         // Reporting events
         case .reportingReportRunFailed:
-            if let reportRun = data.reportRun {
+            if let reportRun = Stripe.Events.Event.Object.cases.reportRun.extract(data) {
                 self = .reporting(.reportRunFailed(reportRun))
                 return
             }
 
         case .reportingReportRunSucceeded:
-            if let reportRun = data.reportRun {
+            if let reportRun = Stripe.Events.Event.Object.cases.reportRun.extract(data) {
                 self = .reporting(.reportRunSucceeded(reportRun))
                 return
             }
 
         case .reportingReportTypeUpdated:
-            if let reportType = data.reportType {
+            if let reportType = Stripe.Events.Event.Object.cases.reportType.extract(data) {
                 self = .reporting(.reportTypeUpdated(reportType))
                 return
             }
 
         // Review events
         case .reviewClosed:
-            if let review = data.review {
+            if let review = Stripe.Events.Event.Object.cases.review.extract(data) {
                 self = .review(.closed(review))
                 return
             }
 
         case .reviewOpened:
-            if let review = data.review {
+            if let review = Stripe.Events.Event.Object.cases.review.extract(data) {
                 self = .review(.opened(review))
                 return
             }
 
         //            // Sigma events
         case .sigmaScheduledQueryRunCreated:
-            if let scheduledQueryRun = data.scheduledQueryRun {
+            if let scheduledQueryRun = Stripe.Events.Event.Object.cases.scheduledQueryRun.extract(data) {
                 self = .sigma(.scheduledQueryRunCreated(scheduledQueryRun))
                 return
             }
@@ -1452,150 +1452,150 @@ extension Stripe.Events.Event.Typed {
 
         // Subscription Schedule events
         case .subscriptionScheduleAborted:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.aborted(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCanceled:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.canceled(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCompleted:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.completed(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCreated:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.created(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleExpiring:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.expiring(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleReleased:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.released(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleUpdated:
-            if let subscriptionSchedule = data.subscriptionSchedule {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
                 self = .subscriptionSchedule(.updated(subscriptionSchedule))
                 return
             }
 
         // Tax events
         case .taxRateCreated:
-            if let taxRate = data.taxRate {
+            if let taxRate = Stripe.Events.Event.Object.cases.taxRate.extract(data) {
                 self = .tax(.rateCreated(taxRate))
                 return
             }
 
         case .taxRateUpdated:
-            if let taxRate = data.taxRate {
+            if let taxRate = Stripe.Events.Event.Object.cases.taxRate.extract(data) {
                 self = .tax(.rateUpdated(taxRate))
                 return
             }
 
         //            // Terminal events
         case .terminalReaderActionFailed:
-            if let reader = data.reader {
+            if let reader = Stripe.Events.Event.Object.cases.reader.extract(data) {
                 self = .terminal(.readerActionFailed(reader))
                 return
             }
         //
         case .terminalReaderActionSucceeded:
-            if let reader = data.reader {
+            if let reader = Stripe.Events.Event.Object.cases.reader.extract(data) {
                 self = .terminal(.readerActionSucceeded(reader))
                 return
             }
         //
         //            // Test Helpers events
         case .testHelpersTestClockAdvancing:
-            if let testClock = data.testClock {
+            if let testClock = Stripe.Events.Event.Object.cases.testClock.extract(data) {
                 self = .testHelpers(.testClockAdvancing(testClock))
                 return
             }
 
         case .testHelpersTestClockCreated:
-            if let testClock = data.testClock {
+            if let testClock = Stripe.Events.Event.Object.cases.testClock.extract(data) {
                 self = .testHelpers(.testClockCreated(testClock))
                 return
             }
 
         case .testHelpersTestClockDeleted:
-            if let testClock = data.testClock {
+            if let testClock = Stripe.Events.Event.Object.cases.testClock.extract(data) {
                 self = .testHelpers(.testClockDeleted(testClock))
                 return
             }
 
         case .testHelpersTestClockInternalFailure:
-            if let testClock = data.testClock {
+            if let testClock = Stripe.Events.Event.Object.cases.testClock.extract(data) {
                 self = .testHelpers(.testClockInternalFailure(testClock))
                 return
             }
 
         case .testHelpersTestClockReady:
-            if let testClock = data.testClock {
+            if let testClock = Stripe.Events.Event.Object.cases.testClock.extract(data) {
                 self = .testHelpers(.testClockReady(testClock))
                 return
             }
 
         //             Top-up events
         case .topupCanceled:
-            if let topup = data.topup {
+            if let topup = Stripe.Events.Event.Object.cases.topup.extract(data) {
                 self = .topup(.canceled(topup))
                 return
             }
 
         case .topupCreated:
-            if let topup = data.topup {
+            if let topup = Stripe.Events.Event.Object.cases.topup.extract(data) {
                 self = .topup(.created(topup))
                 return
             }
 
         case .topupFailed:
-            if let topup = data.topup {
+            if let topup = Stripe.Events.Event.Object.cases.topup.extract(data) {
                 self = .topup(.failed(topup))
                 return
             }
 
         case .topupReversed:
-            if let topup = data.topup {
+            if let topup = Stripe.Events.Event.Object.cases.topup.extract(data) {
                 self = .topup(.reversed(topup))
                 return
             }
 
         case .topupSucceeded:
-            if let topup = data.topup {
+            if let topup = Stripe.Events.Event.Object.cases.topup.extract(data) {
                 self = .topup(.succeeded(topup))
                 return
             }
 
         // Transfer events
         case .transferCreated:
-            if let transfer = data.transfer {
+            if let transfer = Stripe.Events.Event.Object.cases.transfer.extract(data) {
                 self = .transfer(.created(transfer))
                 return
             }
 
         case .transferReversed:
-            if let transfer = data.transfer {
+            if let transfer = Stripe.Events.Event.Object.cases.transfer.extract(data) {
                 self = .transfer(.reversed(transfer))
                 return
             }
 
         case .transferUpdated:
-            if let transfer = data.transfer {
+            if let transfer = Stripe.Events.Event.Object.cases.transfer.extract(data) {
                 self = .transfer(.updated(transfer))
                 return
             }
