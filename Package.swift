@@ -263,8 +263,14 @@ let package = Package(
                 .stripeCrypto,
                 .stripeClimate,
                 .stripeForwarding,
-                .stripeWebhooks,
-                .stripeWebElements
+                .stripeWebhooks
+                // HTML-STORY GATE (E-1 R-1, supervisor 2026-07-13 13:27:53): "Stripe Web
+                // Elements" is DETACHED from the aggregate — its 8 files are pf-HTML-era
+                // DSL (265 errors against institute swift-html) and rewriting them would
+                // decide the open HTML-email/HTML-presentation ruling by construction.
+                // Same gate as swift-email's parked surface and the app's HTMLWebsite
+                // stopgap. The standalone "Stripe Web Elements" product stays vended;
+                // re-attach when the HTML-story ruling lands.
             ]
         ),
         .testTarget(

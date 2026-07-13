@@ -43,5 +43,6 @@
 @_exported import Stripe_Terminal
 @_exported import Stripe_Tokens
 @_exported import Stripe_Treasury
-@_exported import Stripe_Web_Elements
+// HTML-STORY GATE (E-1, 2026-07-13): Stripe Web Elements detached from the
+// aggregate; re-export returns when the HTML-story ruling lands.
 @_exported import Stripe_Webhooks
