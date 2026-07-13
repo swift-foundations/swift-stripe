@@ -6,10 +6,9 @@
 //
 
 import Dependencies
-import DependenciesTestSupport
+import Dependencies_Test_Support
 import ServerFoundationEnvVars
 import Foundation
-import IssueReporting
 import Stripe_Billing
 import Stripe_Customers
 import Stripe_Products
@@ -20,8 +19,7 @@ import Testing
     "Subscription Client Tests",
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
-    .dependency(\.date, .init(Date.init)),
-    .dependency(\.continuousClock, ContinuousClock())
+    .dependency(\.date, .init(Date.init))
 )
 struct SubscriptionClientTests {
     @Test("Should successfully create a subscription")

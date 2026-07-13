@@ -6,10 +6,9 @@
 //
 
 import Dependencies
-import DependenciesTestSupport
+import Dependencies_Test_Support
 import ServerFoundationEnvVars
 import Foundation
-import IssueReporting
 import Stripe_Customers
 import Stripe_Shared
 import Testing
@@ -18,8 +17,7 @@ import Testing
     "Customer Client Tests",
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
-    .dependency(\.date, .init(Date.init)),
-    .dependency(\.continuousClock, ContinuousClock())
+    .dependency(\.date, .init(Date.init))
 )
 struct CustomerClientTests {
     @Test("Should successfully create a customer")

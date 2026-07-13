@@ -6,10 +6,9 @@
 //
 
 import Dependencies
-import DependenciesTestSupport
+import Dependencies_Test_Support
 import ServerFoundationEnvVars
 import Foundation
-import IssueReporting
 import Stripe_Checkout_Sessions
 import Stripe_Products
 import Stripe_Shared
@@ -19,8 +18,7 @@ import Testing
     "Checkout Session Client Tests",
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
-    .dependency(\.date, .init(Date.init)),
-    .dependency(\.continuousClock, ContinuousClock())
+    .dependency(\.date, .init(Date.init))
 )
 struct CheckoutSessionClientTests {
     @Test("Should successfully create a session")
