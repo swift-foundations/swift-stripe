@@ -1,7 +1,6 @@
 import Dependencies
 import Foundation
 import HTML
-import Parsing
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.PaymentMethodMessaging {
