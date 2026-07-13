@@ -144,7 +144,8 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
-    static var authenticating: Self { .product(name: "Authenticating", package: "swift-url-routing") }
+    static var authenticating: Self { .product(name: "Authentication Foundation Integration", package: "swift-url-routing-authentication") }
+    static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
 }
@@ -200,6 +201,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
+        .package(url: "https://github.com/swift-foundations/swift-url-routing-authentication.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-server-foundation.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", branch: "main"),
@@ -212,6 +214,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .authenticating,
+                .urlRouting,
                 .stripeLiveShared,
                 .stripeEventsTypes
             ]
