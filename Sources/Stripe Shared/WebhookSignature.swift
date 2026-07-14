@@ -4,7 +4,6 @@
 
 import Crypto
 import Foundation
-import ServerFoundation
 
 /// Errors that can occur during webhook signature verification
 public enum StripeSignatureError: Swift.Error {

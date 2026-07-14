@@ -7,8 +7,7 @@
 
 import Dependencies
 import Foundation
-import ServerFoundation
-import ServerFoundationEnvVars
+import Environment_Dependencies
 
 extension EnvVars {
     package static var development: Self {

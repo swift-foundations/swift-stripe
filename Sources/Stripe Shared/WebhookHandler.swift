@@ -4,7 +4,6 @@
 
 import Dependencies
 import Foundation
-import ServerFoundation
 import Stripe_Events_Types
 
 //extension Stripe {
