@@ -148,6 +148,7 @@ extension Target.Dependency {
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
+    static var crypto: Self { .product(name: "Crypto", package: "swift-crypto") }
 }
 
 let package = Package(
@@ -206,7 +207,8 @@ let package = Package(
         .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main")
+        .package(url: "https://github.com/swift-foundations/swift-html.git", branch: "main"),
+        .package(url: "https://github.com/apple/swift-crypto.git", "3.0.0"..<"5.0.0")
     ],
     targets: [
         .target(
@@ -216,7 +218,10 @@ let package = Package(
                 .authenticating,
                 .urlRouting,
                 .stripeLiveShared,
-                .stripeEventsTypes
+                .stripeEventsTypes,
+                // `Sources/Stripe Shared/WebhookSignature.swift` imports Crypto
+                // (HMAC<SHA256> for the Stripe-Signature check) — [MOD-038].
+                .crypto
             ]
         ),
         .target(
