@@ -1,10 +1,12 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.PaymentMethodMessaging {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.PaymentMethodMessaging
 
         @Dependency(\.uuid) var uuid
@@ -16,7 +18,7 @@ extension Stripe.WebElements.PaymentMethodMessaging {
             self.element = element
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
             let elementId = "payment-method-messaging-\(uuid().uuidString)"
 
             div {

@@ -1,10 +1,12 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.LinkAuthentication {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.LinkAuthentication
 
         @Dependency(\.uuid) var uuid
@@ -16,7 +18,7 @@ extension Stripe.WebElements.LinkAuthentication {
             self.element = element
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
             let elementId = "link-auth-\(uuid().uuidString)"
 
             div {

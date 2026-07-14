@@ -1,10 +1,12 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.Address {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.Address
 
         @Dependency(\.envVars.stripe.publishableKey) var publishableKey
@@ -17,7 +19,7 @@ extension Stripe.WebElements.Address {
 
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
             let elementId = "address-\(uuid().uuidString)"
 
             div {
@@ -57,15 +59,17 @@ extension Stripe.WebElements.Address {
                     """
                 }
 
-                Style {
-                    """
-                    .address-element {
-                        padding: 12px;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 4px;
-                        background-color: white;
-                    }
-                    """
+                HTML_Standard.Style {
+                    HTML.Raw(
+                        """
+                        .address-element {
+                            padding: 12px;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 4px;
+                            background-color: white;
+                        }
+                        """
+                    )
                 }
             }
         }

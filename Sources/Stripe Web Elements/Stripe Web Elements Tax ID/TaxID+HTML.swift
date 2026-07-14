@@ -1,13 +1,15 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.TaxID {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.TaxID
         let elementId: String
-        let styledElement: AnyHTML
+        let styledElement: HTML.AnyView
         @Dependency(\.uuid) var uuid
         @Dependency(\.envVars.stripe.publishableKey) var publishableKey
 
@@ -16,22 +18,24 @@ extension Stripe.WebElements.TaxID {
         ) {
             @Dependency(\.uuid) var uuid
 
-            self.elementId = "tax-id-\(uuid().uuidString)"
+            let elementId = "tax-id-\(uuid().uuidString)"
 
-            let styledElement = AnyHTML(
+            let styledElement = HTML.AnyView(
                 div {}
                     .id(elementId)
+                    .css
                     .padding(.rem(1))
                     .borderRadius(.px(4))
                     .border(.init(width: .px(1), style: .solid, color: .hex("#ccc")))
                     .backgroundColor(.white)
             )
 
+            self.elementId = elementId
             self.styledElement = styledElement
             self.element = element
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
 
             div {
                 styledElement
@@ -69,15 +73,17 @@ extension Stripe.WebElements.TaxID {
                     """
                 }
 
-                Style {
-                    """
-                    .tax-id-element {
-                        padding: 12px;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 4px;
-                        background-color: white;
-                    }
-                    """
+                HTML_Standard.Style {
+                    HTML.Raw(
+                        """
+                        .tax-id-element {
+                            padding: 12px;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 4px;
+                            background-color: white;
+                        }
+                        """
+                    )
                 }
             }
         }
@@ -94,5 +100,3 @@ extension Stripe.WebElements.TaxID {
         }
     }
 }
-
-// Removed HTMLModifier extension - type doesn't exist in HTML package

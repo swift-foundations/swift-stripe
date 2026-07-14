@@ -1,10 +1,12 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.Payment {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.Payment
         let paymentCompletionURL: URL
         let createPaymentIntentEndpoint: URL
@@ -22,7 +24,7 @@ extension Stripe.WebElements.Payment {
             self.createPaymentIntentEndpoint = createPaymentIntentEndpoint
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
             let paymentElementId = "payment-element-\(uuid().uuidString)"
             let paymentMessageId = "payment-message-\(uuid().uuidString)"
             let paymentFormId = "payment-form-\(uuid().uuidString)"
@@ -215,63 +217,65 @@ extension Stripe.WebElements.Payment {
                     """
                 }
 
-                Style {
-                    """
-                    #\(paymentElementId) {
-                        min-height: 300px;
-                        padding: 20px;
-                        background: white;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 8px;
-                        margin-bottom: 20px;
-                    }
+                HTML_Standard.Style {
+                    HTML.Raw(
+                        """
+                        #\(paymentElementId) {
+                            min-height: 300px;
+                            padding: 20px;
+                            background: white;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 8px;
+                            margin-bottom: 20px;
+                        }
 
-                    .spinner {
-                        display: inline-block;
-                        width: 20px;
-                        height: 20px;
-                        border: 3px solid rgba(255, 255, 255, 0.3);
-                        border-radius: 50%;
-                        border-top-color: white;
-                        animation: spin 1s ease-in-out infinite;
-                    }
+                        .spinner {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            border: 3px solid rgba(255, 255, 255, 0.3);
+                            border-radius: 50%;
+                            border-top-color: white;
+                            animation: spin 1s ease-in-out infinite;
+                        }
 
-                    @keyframes spin {
-                        to { transform: rotate(360deg); }
-                    }
+                        @keyframes spin {
+                            to { transform: rotate(360deg); }
+                        }
 
-                    .hidden {
-                        display: none !important;
-                    }
+                        .hidden {
+                            display: none !important;
+                        }
 
-                    .payment-form-container {
-                        max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                    }
+                        .payment-form-container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                        }
 
-                    /* Stripe Elements specific styling */
-                    .StripeElement {
-                        padding: 15px;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        background-color: white;
-                        transition: all 0.3s;
-                    }
+                        /* Stripe Elements specific styling */
+                        .StripeElement {
+                            padding: 15px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            background-color: white;
+                            transition: all 0.3s;
+                        }
 
-                    .StripeElement--focus {
-                        border-color: #0570de;
-                        box-shadow: 0 0 0 2px rgba(5, 112, 222, 0.1);
-                    }
+                        .StripeElement--focus {
+                            border-color: #0570de;
+                            box-shadow: 0 0 0 2px rgba(5, 112, 222, 0.1);
+                        }
 
-                    .StripeElement--invalid {
-                        border-color: #df1b41;
-                    }
+                        .StripeElement--invalid {
+                            border-color: #df1b41;
+                        }
 
-                    .StripeElement--complete {
-                        border-color: #28a745;
-                    }
-                    """
+                        .StripeElement--complete {
+                            border-color: #28a745;
+                        }
+                        """
+                    )
                 }
             }
         }

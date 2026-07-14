@@ -1,10 +1,12 @@
 import Dependencies
+import Environment_Dependencies
 import Foundation
 import HTML
+import Stripe_Live_Shared
 import Stripe_Web_Elements_Types
 
 extension Stripe.WebElements.ExpressCheckout {
-    public struct View: HTML {
+    public struct View: HTML.View {
         let element: Stripe.WebElements.ExpressCheckout
         let returnURL: URL
         let createPaymentIntentEndpoint: URL
@@ -22,7 +24,7 @@ extension Stripe.WebElements.ExpressCheckout {
             self.createPaymentIntentEndpoint = createPaymentIntentEndpoint
         }
 
-        public var body: some HTML {
+        public var body: some HTML.View {
             let elementId = "express-checkout-\(uuid().uuidString)"
 
             div {
