@@ -14,16 +14,16 @@ import Stripe_Shared
 import Testing
 
 @Suite(
-    "Price Client Tests",
+
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
     .dependency(\.date, .init(Date.init))
 )
 
-struct PriceClientTests {
+struct Test {
 
-    @Test("Should successfully create a one-time price")
-    func testCreateOneTimePrice() async throws {
+    @Test
+    func `Should successfully create a one-time price`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -55,8 +55,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully create a recurring price")
-    func testCreateRecurringPrice() async throws {
+    @Test
+    func `Should successfully create a recurring price`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -93,8 +93,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully retrieve a price")
-    func testRetrievePrice() async throws {
+    @Test
+    func `Should successfully retrieve a price`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -125,8 +125,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully update a price")
-    func testUpdatePrice() async throws {
+    @Test
+    func `Should successfully update a price`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -163,8 +163,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully list prices")
-    func testListPrices() async throws {
+    @Test
+    func `Should successfully list prices`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -204,8 +204,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully search prices")
-    func testSearchPrices() async throws {
+    @Test
+    func `Should successfully search prices`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 
@@ -243,8 +243,8 @@ struct PriceClientTests {
         _ = try await products.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should handle price workflow")
-    func testPriceWorkflow() async throws {
+    @Test
+    func `Should handle price workflow`() async throws {
         @Dependency(Stripe.Products.Prices.self) var prices
         @Dependency(Stripe.Products.Products.self) var products
 

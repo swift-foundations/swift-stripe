@@ -14,14 +14,14 @@ import Stripe_Shared
 import Testing
 
 @Suite(
-    "Product Client Tests",
+
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
     .dependency(\.date, .init(Date.init))
 )
-struct ProductClientTests {
-    @Test("Should successfully create a product")
-    func testCreateProduct() async throws {
+struct Test {
+    @Test
+    func `Should successfully create a product`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         let response = try await client.client.create(
@@ -43,8 +43,8 @@ struct ProductClientTests {
         _ = try await client.client.update(response.id, .init(active: false))
     }
 
-    @Test("Should successfully retrieve a product")
-    func testRetrieveProduct() async throws {
+    @Test
+    func `Should successfully retrieve a product`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         let created = try await client.client.create(
@@ -67,8 +67,8 @@ struct ProductClientTests {
         _ = try await client.client.update(retrieved.id, .init(active: false))
     }
 
-    @Test("Should successfully update a product")
-    func testUpdateProduct() async throws {
+    @Test
+    func `Should successfully update a product`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         let created = try await client.client.create(
@@ -97,8 +97,8 @@ struct ProductClientTests {
         _ = try await client.client.update(updated.id, .init(active: false))
     }
 
-    @Test("Should successfully list products")
-    func testListProducts() async throws {
+    @Test
+    func `Should successfully list products`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         // Create test products
@@ -127,8 +127,8 @@ struct ProductClientTests {
         }
     }
 
-    @Test("Should successfully delete a product")
-    func testDeleteProduct() async throws {
+    @Test
+    func `Should successfully delete a product`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         let created = try await client.client.create(
@@ -145,8 +145,8 @@ struct ProductClientTests {
         #expect(deleted.object == "product")
     }
 
-    @Test("Should successfully search products")
-    func testSearchProducts() async throws {
+    @Test
+    func `Should successfully search products`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         // Create a product with unique metadata for searching
@@ -176,8 +176,8 @@ struct ProductClientTests {
         _ = try await client.client.update(created.id, .init(active: false))
     }
 
-    @Test("Should handle product workflow")
-    func testProductWorkflow() async throws {
+    @Test
+    func `Should handle product workflow`() async throws {
         @Dependency(Stripe.Products.Products.self) var client
 
         // Step 1: Create product

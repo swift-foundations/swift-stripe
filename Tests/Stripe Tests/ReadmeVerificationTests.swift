@@ -2,12 +2,12 @@ import Testing
 
 @testable import Stripe
 
-@Suite("README Verification")
-struct ReadmeVerificationTests {
+@Suite
+struct Test {
 
     // README mentions Stripe as main product
-    @Test("Example from README: Stripe module exists")
-    func exampleStripeModuleExists() {
+    @Test
+    func `Example from README: Stripe module exists`() {
         // Verify the Stripe module compiles and types are accessible
         let stripeType = Stripe.self
 
@@ -15,8 +15,8 @@ struct ReadmeVerificationTests {
     }
 
     // README shows installation with .product(name: "Stripe", package: "swift-stripe")
-    @Test("Example from README: Package structure")
-    func examplePackageStructure() {
+    @Test
+    func `Example from README: Package structure`() {
         // Verify module can be imported and basic types exist
         // This test passes if it compiles, confirming README installation instructions work
         #expect(Bool(true))

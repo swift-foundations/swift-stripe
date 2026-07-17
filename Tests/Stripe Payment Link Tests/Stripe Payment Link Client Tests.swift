@@ -27,7 +27,7 @@
 //    @Dependency(Stripe.Products.Products.self) var products
 //    @Dependency(Stripe.Products.Prices.self) var prices
 //
-//    @Test("Should successfully create a payment link")
+//    @Test
 //    func testCreatePaymentLink() async throws {
 //        // Create test product and price
 //        let product = try await products.client.create(
@@ -68,7 +68,7 @@
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
-//    @Test("Should successfully retrieve a payment link")
+//    @Test
 //    func testRetrievePaymentLink() async throws {
 //
 //
@@ -106,7 +106,7 @@
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
-//    @Test("Should successfully update a payment link")
+//    @Test
 //    func testUpdatePaymentLink() async throws {
 //
 //        // Create test product and price
@@ -156,7 +156,7 @@
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
-//    @Test("Should successfully list payment links")
+//    @Test
 //    func testListPaymentLinks() async throws {
 //
 //        // Create test product and prices
@@ -205,7 +205,7 @@
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
-//    @Test("Should successfully retrieve line items")
+//    @Test
 //    func testListLineItems() async throws {
 //
 //        // Create test product and prices
@@ -257,7 +257,7 @@
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
-//    @Test("Should handle payment link workflow")
+//    @Test
 //    func testPaymentLinkWorkflow() async throws {
 //
 //        // Create test product and price

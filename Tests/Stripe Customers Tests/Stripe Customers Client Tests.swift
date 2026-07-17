@@ -14,14 +14,14 @@ import Stripe_Shared
 import Testing
 
 @Suite(
-    "Customer Client Tests",
+
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
     .dependency(\.date, .init(Date.init))
 )
-struct CustomerClientTests {
-    @Test("Should successfully create a customer")
-    func testCreateCustomer() async throws {
+struct Test {
+    @Test
+    func `Should successfully create a customer`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         let response = try await client.client.create(
@@ -47,8 +47,8 @@ struct CustomerClientTests {
         #expect(delete.deleted == true)
     }
 
-    @Test("Should successfully retrieve a customer")
-    func testRetrieveCustomer() async throws {
+    @Test
+    func `Should successfully retrieve a customer`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         let created = try await client.client.create(
@@ -73,8 +73,8 @@ struct CustomerClientTests {
         #expect(delete.deleted == true)
     }
 
-    @Test("Should successfully update a customer")
-    func testUpdateCustomer() async throws {
+    @Test
+    func `Should successfully update a customer`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         let created = try await client.client.create(
@@ -105,8 +105,8 @@ struct CustomerClientTests {
         #expect(delete.deleted == true)
     }
 
-    @Test("Should successfully list customers")
-    func testListCustomers() async throws {
+    @Test
+    func `Should successfully list customers`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         // Create test customers
@@ -137,8 +137,8 @@ struct CustomerClientTests {
         }
     }
 
-    @Test("Should successfully delete a customer")
-    func testDeleteCustomer() async throws {
+    @Test
+    func `Should successfully delete a customer`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         let created = try await client.client.create(
@@ -155,8 +155,8 @@ struct CustomerClientTests {
         #expect(deleted.object == "customer")
     }
 
-    @Test("Should successfully search customers")
-    func testSearchCustomers() async throws {
+    @Test
+    func `Should successfully search customers`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         // Create customer with unique metadata for searching
@@ -186,8 +186,8 @@ struct CustomerClientTests {
         _ = try await client.client.delete(created.id)
     }
 
-    @Test("Should handle customer workflow")
-    func testCustomerWorkflow() async throws {
+    @Test
+    func `Should handle customer workflow`() async throws {
         @Dependency(Stripe.Customers.self) var client
 
         // Step 1: Create customer

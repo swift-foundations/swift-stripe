@@ -15,14 +15,14 @@ import Stripe_Shared
 import Testing
 
 @Suite(
-    "Checkout Session Client Tests",
+
     .dependency(\.projectRoot, .stripe),
     .dependency(\.envVars, .development),
     .dependency(\.date, .init(Date.init))
 )
-struct CheckoutSessionClientTests {
-    @Test("Should successfully create a session")
-    func testCreateSession() async throws {
+struct Test {
+    @Test
+    func `Should successfully create a session`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
@@ -82,8 +82,8 @@ struct CheckoutSessionClientTests {
         _ = try await productsClient.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully retrieve a session")
-    func testRetrieveSession() async throws {
+    @Test
+    func `Should successfully retrieve a session`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
@@ -128,8 +128,8 @@ struct CheckoutSessionClientTests {
         _ = try await productsClient.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully list sessions")
-    func testListSessions() async throws {
+    @Test
+    func `Should successfully list sessions`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
@@ -179,8 +179,8 @@ struct CheckoutSessionClientTests {
         _ = try await productsClient.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully expire a session")
-    func testExpireSession() async throws {
+    @Test
+    func `Should successfully expire a session`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
@@ -222,8 +222,8 @@ struct CheckoutSessionClientTests {
         _ = try await productsClient.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should successfully retrieve session line items")
-    func testSessionLineItems() async throws {
+    @Test
+    func `Should successfully retrieve session line items`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
@@ -276,8 +276,8 @@ struct CheckoutSessionClientTests {
         _ = try await productsClient.client.update(product.id, .init(active: false))
     }
 
-    @Test("Should handle complete checkout session workflow")
-    func testCheckoutSessionWorkflow() async throws {
+    @Test
+    func `Should handle complete checkout session workflow`() async throws {
         @Dependency(Stripe.Checkout.Sessions.self) var client
         @Dependency(Stripe.Products.Products.self) var productsClient
         @Dependency(Stripe.Products.Prices.self) var pricesClient
