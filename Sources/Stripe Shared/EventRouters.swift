@@ -36,6 +36,7 @@ extension Stripe.Events.Event {
     /// itself is declared `Parser.Bidirectional` for the same reason of shape.)
     public struct Router: Parser.Bidirectional, Sendable {
         public typealias Input = URLRequestData
+        public typealias Buffer = URLRequestData
         public typealias Output = Stripe.Events.Event
         public typealias Failure = StripeRoutingError
         public typealias Body = Never
@@ -108,6 +109,14 @@ extension Stripe.Events.Event {
             } catch {
                 throw StripeRoutingError.parseError(error)
             }
+        }
+
+        public borrowing func serialize(
+            _ output: Stripe.Events.Event,
+            into buffer: inout URLRequestData
+        ) throws(StripeRoutingError) {
+            // Body installation is keyed (not positional): identical to print.
+            try print(output, into: &buffer)
         }
     }
 }
