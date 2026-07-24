@@ -144,7 +144,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var environmentDependencies: Self { .product(name: "Environment Dependencies", package: "swift-environment-dependencies") }
-    static var authenticating: Self { .product(name: "Authentication Foundation Integration", package: "swift-url-routing-authentication") }
+    static var urlRoutingFoundationIntegration: Self { .product(name: "URL Routing Foundation Integration", package: "swift-url-routing") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
     static var html: Self { .product(name: "HTML", package: "swift-html") }
@@ -202,7 +202,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-url-routing-authentication.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-environment-dependencies.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-stripe-live.git", branch: "main"),
@@ -215,7 +214,7 @@ let package = Package(
             name: .stripeShared,
             dependencies: [
                 .environmentDependencies,
-                .authenticating,
+                .urlRoutingFoundationIntegration,
                 .urlRouting,
                 .stripeLiveShared,
                 .stripeEventsTypes,

@@ -25,7 +25,7 @@ extension Stripe.Events.Event {
     ///
     /// Institute-idiom respell (run-arc 2026-07-13): manual parse/print with
     /// function-level typed throws and `Body = Never`, per the vended
-    /// `RFC_6750.Bearer.Router` shape (swift-url-routing-authentication) and
+    /// `RFC_6750.Bearer.Router` shape (swift-url-routing, URLRouting core) and
     /// stripe-live's StripeAuthRouter unification (90cce3a). Conforms to
     /// `Parser.Bidirectional` directly — NOT `ParserPrinter` — because
     /// `ParserPrinter` pins `Failure == RFC_3986.URI.Routing.Error`, whose

@@ -80,3 +80,6 @@ Thumbs.db
 # ========== LOCAL OVERRIDES ==========
 # Package-specific rules below (managed by sync-gitignore.sh)
 
+
+# Arc-scoped edit-mode local package overrides
+Packages/
